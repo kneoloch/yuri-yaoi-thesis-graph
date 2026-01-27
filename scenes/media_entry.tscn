@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://chor557ybioq7"]
+[gd_scene format=3 uid="uid://chor557ybioq7"]
 
 [ext_resource type="Texture2D" uid="uid://dyl67f7sikpss" path="res://assets/128609-flying-airplane-vector-download-free-image.png" id="1_peomi"]
 [ext_resource type="Script" uid="uid://quxq1n3g6015" path="res://scenes/media_entry.gd" id="2_3gbk1"]
@@ -7,6 +7,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8sy0"]
 transparency = 1
 shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
 albedo_texture = ExtResource("1_peomi")
 stencil_flags = 2
 stencil_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
@@ -23,12 +24,13 @@ shader_parameter/glowDensity = 3
 shader_parameter/glowRadialCoverage = 4
 shader_parameter/glowAngle = 1.57
 shader_parameter/glowSharpness = 3.0000001425
-shader_parameter/alphaThreshold = 0.2
+shader_parameter/alphaThreshold = 0.030000001425
+shader_parameter/opacity = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tlwt5"]
 size = Vector3(2.2158203, 0.9453125, 0.41625977)
 
-[node name="MediaEntry" type="Sprite3D" groups=["media_object"]]
+[node name="MediaEntry" type="Sprite3D" unique_id=1940306178 groups=["media_object"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_t8sy0")
 material_overlay = SubResource("ShaderMaterial_x3835")
@@ -36,16 +38,16 @@ billboard = 2
 texture = ExtResource("1_peomi")
 script = ExtResource("2_3gbk1")
 
-[node name="NameLabel" type="Label3D" parent="."]
+[node name="NameLabel" type="Label3D" parent="." unique_id=1521299674]
 unique_name_in_owner = true
-transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -1.3479697, 0.009999998)
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -1.3, 0.01)
 pixel_size = 0.008
 billboard = 2
 modulate = Color(0.13333334, 0.13725491, 0.13725491, 1)
 outline_modulate = Color(0.9411765, 0.9647059, 0.9411765, 1)
 text = "Media Entry"
 
-[node name="Coordinates" type="Label3D" parent="."]
+[node name="Coordinates" type="Label3D" parent="." unique_id=810420259]
 unique_name_in_owner = true
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -1.659829, 0.009999998)
 pixel_size = 0.006
@@ -54,7 +56,7 @@ modulate = Color(0.13333334, 0.13725491, 0.13725491, 1)
 outline_modulate = Color(0.9411765, 0.9647059, 0.9411765, 1)
 text = "(x, y, t)"
 
-[node name="MediaTypeLabel" type="Label3D" parent="."]
+[node name="MediaTypeLabel" type="Label3D" parent="." unique_id=1029601075]
 unique_name_in_owner = true
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -1.9363968, 0.009999998)
 billboard = 2
@@ -62,14 +64,14 @@ modulate = Color(0.13333334, 0.13725491, 0.13725491, 1)
 outline_modulate = Color(0.9411765, 0.9647059, 0.9411765, 1)
 text = "#film  #series"
 
-[node name="CameraMarker" type="Marker3D" parent="."]
+[node name="CameraMarker" type="Marker3D" parent="." unique_id=1178029836]
 unique_name_in_owner = true
 transform = Transform3D(-0.9999995, 0, -8.742273e-08, 0, 0.99999976, 0, 8.742273e-08, 0, -0.9999995, 0, 0, 3.337)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1050772395]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=787142894]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27608207, 0)
 shape = SubResource("BoxShape3D_tlwt5")
 

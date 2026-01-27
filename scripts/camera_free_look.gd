@@ -3,6 +3,16 @@ class_name FreeLookCamera
 
 @onready var graph_origin: Marker3D = %Origin
 @onready var marker: Marker3D = %Marker3D
+@onready var starting_pos: Vector3 = global_position
+@export var far_view: Marker3D
+
+@onready var front_orthogonal: Marker3D = %FrontOrthogonal
+@onready var left_orthogonal: Marker3D = %LeftOrthogonal
+@onready var right_orthogonal: Marker3D = %RightOrthogonal
+@onready var top_orthogonal: Marker3D = %TopOrthogonal
+@onready var bottom_orthogonal: Marker3D = %BottomOrthogonal
+@onready var rear_orthogonal: Marker3D = %RearOrthogonal
+
 ## Modifier keys' speed multiplier
 const SHIFT_MULTIPLIER: float = 2.5
 const ALT_MULTIPLIER: float = 1.0 / SHIFT_MULTIPLIER
@@ -37,6 +47,7 @@ var target_pos: Vector3 = Vector3(0, 0, 0)
 func _ready() -> void:
 	target_lock(graph_origin)
 	Global.selectObject.connect(target_lock)
+	Global.snapCameraPos.connect(_snap_to_orthogonal)
 
 func target_lock(selected_object: Node3D) -> void:
 	if selected_object == null:
@@ -49,7 +60,47 @@ func target_lock(selected_object: Node3D) -> void:
 		global_position = selected_object.camera_marker.global_position
 		look_at(selected_object.global_position)
 
+func _initialize() -> void:
+	if !Global.init:
+		Global.initialize.emit()
+		Global.init = true
+		MediaEntry.filtered_array = get_tree().get_nodes_in_group("media_object")
+		get_tree().call_group("media_object", "filtered_transparency", MediaEntry.filtered_array)
+
+func _snap_to_orthogonal(orthogonal: String) -> void:
+	print(orthogonal)
+	match orthogonal:
+		"FrontOrthogonal":
+			global_position = front_orthogonal.global_position
+			target_lock(graph_origin)
+		"RightOrthogonal":
+			global_position = right_orthogonal.global_position
+			target_lock(graph_origin)
+		"TopOrthogonal":
+			global_position = top_orthogonal.global_position
+			target_lock(graph_origin)
+		"RearOrthogonal":
+			global_position = rear_orthogonal.global_position
+			target_lock(graph_origin)
+		"LeftOrthgonal":
+			global_position = left_orthogonal.global_position
+			target_lock(graph_origin)
+		"BottomOrthogonal":
+			global_position = bottom_orthogonal.global_position
+			target_lock(graph_origin)
+
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		_initialize()
+	
+	if event.is_action_released("far_view"):
+		global_position = far_view.global_position
+		target_lock(graph_origin)
+	
+	if event.is_action_released("front_view"):
+		global_position = starting_pos
+		target_lock(graph_origin)
+	
 	if event.is_action_released("recenter"):
 		target_lock(graph_origin)
 	
@@ -63,6 +114,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("screen_drag"):
 		dragging = false
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	
+	if event.is_action_pressed("select"):
+		if Global.init:
+			get_tree().call_group("media_object", "filtered_transparency", MediaEntry.filtered_array)
+		else:
+			_initialize()
 	
 	## Receives mouse motion
 	if event is InputEventMouseMotion:
@@ -115,7 +172,7 @@ func _process(delta: float) -> void:
 	_update_mouselook()
 	_update_movement(delta)
 	
-	if !Global.curr_theme == Global.ThemeColor.CUSTOM:
+	if !Global.animated_bg_visible:
 		return
 	else:
 		if position.x < 0:

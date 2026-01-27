@@ -10,7 +10,7 @@ func _process(_delta: float) -> void:
 	var sprite_transform: Transform3D = global_transform
 	
 	var basis_y: Vector3 = sprite_transform.basis.y
-	var basis_z: Vector3 = (camera_transform.origin - sprite_transform.origin).normalized() * original_scale.z
-	var basis_x: Vector3 = basis.y.cross(basis_z).normalized() * original_scale.x
+	var basis_z: Vector3 = (camera_transform.origin - sprite_transform.origin).normalized() #* original_scale.z
+	var basis_x: Vector3 = basis.y.cross(basis_z).normalized() #* original_scale.x
 	
 	global_transform = Transform3D(basis_x, basis_y, basis_z, sprite_transform.origin)

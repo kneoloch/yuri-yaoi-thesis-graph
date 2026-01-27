@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cxgr8awsfoe75"]
+
+[ext_resource type="PackedScene" uid="uid://ch4n0d7du7fwd" path="res://scenes/perspective_cube.tscn" id="1_6fqkj"]
+[ext_resource type="Script" uid="uid://cwokpqh4edrke" path="res://scenes/3dgui_element.gd" id="1_bg53l"]
+
+[node name="3DGUIElement" type="SubViewportContainer" unique_id=1965692231]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -512.0
+offset_bottom = 512.0
+grow_horizontal = 0
+pivot_offset = Vector2(512, 0)
+script = ExtResource("1_bg53l")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=59798384]
+transparent_bg = true
+handle_input_locally = false
+physics_object_picking = true
+render_target_update_mode = 4
+
+[node name="PerspectiveCube" parent="SubViewport" unique_id=2143924056 node_paths=PackedStringArray("camera") instance=ExtResource("1_6fqkj")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.85015, 127.6464, 0)
+camera = NodePath("../Camera")
+
+[node name="Camera" type="Camera3D" parent="SubViewport" unique_id=1686410251]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.85015, 127.6464, 1.7)

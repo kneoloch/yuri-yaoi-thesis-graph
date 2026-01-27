@@ -10,13 +10,15 @@ uniform float glowAngle: hint_range(0.0, 6.28) = 1.57; // The starting angle. Mo
 uniform float glowSharpness: hint_range(0.0, 5.0) = 1.0; // Effect how quickly stamps become transparent as they move out
 uniform float alphaThreshold: hint_range(0.0, 1.0) =  0.2; // Alpha level a pixel should be considered a glow
 
-//Goes through every single pixle and does thing
+uniform float opacity : hint_range(0, 1) = 1.0; // Adjust opacity dynamically
+
+//Goes through every single pixel and does thing
 void fragment() {
 	vec4 col = texture(sprite_texture, UV); // Gets color at uv position of pixel
 
 	// Sets source image as default pixel
 	ALBEDO = col.rgb;
-	ALPHA = col.a;
+	ALPHA = col.a * opacity; // Use the texture's alpha channel
 
 	vec2 pixel_size = 1.0 / vec2(textureSize(sprite_texture, 0)); // Set pixel size
 	float alph = 0.0; // Start with a 0 alpha to add to with each check

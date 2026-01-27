@@ -1,0 +1,265 @@
+[gd_scene format=3 uid="uid://ch4n0d7du7fwd"]
+
+[ext_resource type="FontFile" uid="uid://cukpsq22joebm" path="res://assets/Questrial-Regular.ttf" id="1_flmjo"]
+[ext_resource type="Script" uid="uid://c0tjtr46r4elo" path="res://scenes/perspective_cube.gd" id="1_ypx06"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypx06"]
+shading_mode = 0
+albedo_color = Color(0, 0.39215687, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f232w"]
+shading_mode = 0
+albedo_color = Color(0, 0.39215687, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_44wxh"]
+radius = 0.16925313
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrwx8"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0.27450982, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5uxa"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0.27450982, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gsbg"]
+shading_mode = 0
+albedo_color = Color(0.4509804, 0.90588236, 0.27058825, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkh44"]
+shading_mode = 0
+albedo_color = Color(0.4509804, 0.90588236, 0.27058825, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xp8dc"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0.39215687, 1, 1)
+grow = true
+grow_amount = 0.1
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwwkk"]
+next_pass = SubResource("StandardMaterial3D_xp8dc")
+shading_mode = 0
+albedo_color = Color(9.62615e-08, 0.21479118, 0.4202852, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0, 0.39215687, 1, 1)
+stencil_outline_thickness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ivw6r"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0.27450982, 1)
+grow = true
+grow_amount = 0.1
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egjby"]
+next_pass = SubResource("StandardMaterial3D_ivw6r")
+shading_mode = 0
+albedo_color = Color(0.44313726, 0, 0.14901961, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(1, 0, 0.27450982, 1)
+stencil_outline_thickness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riy5j"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.4509804, 0.90588236, 0.27058825, 1)
+grow = true
+grow_amount = 0.1
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkmqe"]
+next_pass = SubResource("StandardMaterial3D_riy5j")
+shading_mode = 0
+albedo_color = Color(0.22320455, 0.42863715, 1.92523e-07, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.4509804, 0.90588236, 0.27058825, 1)
+stencil_outline_thickness = 0.1
+
+[node name="PerspectiveCube" type="Node3D" unique_id=2143924056]
+script = ExtResource("1_ypx06")
+
+[node name="PosT" type="CSGSphere3D" parent="." unique_id=301661948]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0.5)
+radius = 0.7907687
+material = SubResource("StandardMaterial3D_ypx06")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PosT" unique_id=1773758939]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.0019373444, 0.99999803, 0, -0.99999803, 0.0019373444, 0, 0, -2)
+radius = 0.1
+height = 2.6
+material = SubResource("StandardMaterial3D_f232w")
+
+[node name="PosTArea" type="Area3D" parent="PosT" unique_id=323686255]
+transform = Transform3D(5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0)
+
+[node name="PosTCollision" type="CollisionShape3D" parent="PosT/PosTArea" unique_id=1101361911]
+shape = SubResource("SphereShape3D_44wxh")
+
+[node name="PosTLabel" type="Label3D" parent="PosT" unique_id=89808847]
+transform = Transform3D(5.5555544, 0, 0, 0, 5.5555544, 0, 0, 0, 5.5555544, 0, 0, 1)
+billboard = 1
+modulate = Color(0.9411765, 0.9647059, 0.9411765, 1)
+outline_modulate = Color(0.13333334, 0.13725491, 0.13725491, 1)
+text = "+T"
+font = ExtResource("1_flmjo")
+font_size = 48
+
+[node name="FrontOrthogonal" type="Marker3D" parent="PosT" unique_id=966211325]
+unique_name_in_owner = true
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 8)
+
+[node name="PosX" type="CSGSphere3D" parent="." unique_id=109976717]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.5, 0, 0)
+radius = 0.7907687
+material = SubResource("StandardMaterial3D_yrwx8")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PosX" unique_id=384617696]
+transform = Transform3D(-4.3711363e-08, -0.99999976, -4.371138e-08, 0, -4.3711367e-08, 0.99999976, -0.99999946, 4.3711367e-08, 1.9106844e-15, -2, 0.001, 0)
+radius = 0.1
+height = 2.6
+material = SubResource("StandardMaterial3D_d5uxa")
+
+[node name="PosXArea" type="Area3D" parent="PosX" unique_id=19889536]
+transform = Transform3D(5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0)
+
+[node name="PosXCollision" type="CollisionShape3D" parent="PosX/PosXArea" unique_id=200340700]
+shape = SubResource("SphereShape3D_44wxh")
+
+[node name="PosXLabel" type="Label3D" parent="PosX" unique_id=338829687]
+transform = Transform3D(5.5555544, 0, 0, 0, 5.5555544, 0, 0, 0, 5.5555544, 1.8, 0, 0)
+billboard = 1
+modulate = Color(0.9411765, 0.9647059, 0.9411765, 1)
+outline_modulate = Color(0.13333334, 0.13725491, 0.13725491, 1)
+text = "+X"
+font = ExtResource("1_flmjo")
+font_size = 48
+
+[node name="RightOrthogonal" type="Marker3D" parent="PosX" unique_id=1203832451]
+unique_name_in_owner = true
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 8, 0, 0)
+
+[node name="PosY" type="CSGSphere3D" parent="." unique_id=1293674831]
+transform = Transform3D(0.14999999, 0, 0, 0, -6.556708e-09, 0.14999999, 0, -0.14999999, -6.556708e-09, 0, 0.5, 0)
+radius = 0.7907687
+material = SubResource("StandardMaterial3D_7gsbg")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PosY" unique_id=388175409]
+transform = Transform3D(0.99999976, 7.4038e-15, 7.1054274e-15, -1.5276669e-13, 0.0019373444, 0.999998, 3.090861e-13, -0.999998, 0.0019373444, 3.1225023e-16, 0.0011605311, -2.0828614)
+radius = 0.1
+height = 2.6856446
+material = SubResource("StandardMaterial3D_bkh44")
+
+[node name="PosYArea" type="Area3D" parent="PosY" unique_id=1761263605]
+transform = Transform3D(5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0)
+
+[node name="PosYCollision" type="CollisionShape3D" parent="PosY/PosYArea" unique_id=1916417394]
+shape = SubResource("SphereShape3D_44wxh")
+
+[node name="PosYLabel" type="Label3D" parent="PosY" unique_id=917646531]
+transform = Transform3D(5.5555553, 0, 0, 0, -2.4284103e-07, -5.5555553, 0, 5.5555553, -2.4284103e-07, 0, 0, 0)
+offset = Vector2(0, 60)
+modulate = Color(0.9411765, 0.9647059, 0.9411765, 1)
+outline_modulate = Color(0.13333334, 0.13725491, 0.13725491, 1)
+text = "+Y"
+font = ExtResource("1_flmjo")
+font_size = 48
+
+[node name="TopOrthogonal" type="Marker3D" parent="PosY" unique_id=1972657714]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -3.5527137e-15, 0, 3.5527137e-15, 1, 0, 0, 8)
+
+[node name="NegT" type="CSGSphere3D" parent="." unique_id=1843260358]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, -0.5)
+radius = 0.7907687
+material = SubResource("StandardMaterial3D_hwwkk")
+
+[node name="NegTArea" type="Area3D" parent="NegT" unique_id=1604173396]
+transform = Transform3D(5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0)
+
+[node name="NegTCollision" type="CollisionShape3D" parent="NegT/NegTArea" unique_id=643648537]
+shape = SubResource("SphereShape3D_44wxh")
+
+[node name="NegTLabel" type="Label3D" parent="NegT" unique_id=1534291539]
+transform = Transform3D(-5.555555, 0, -4.8568205e-07, 0, 5.555555, 0, 4.8568205e-07, 0, -5.555555, 0, 0, -1)
+modulate = Color(0.9411765, 0.9647059, 0.9411765, 1)
+outline_modulate = Color(0.13333334, 0.13725491, 0.13725491, 1)
+text = "-T"
+font = ExtResource("1_flmjo")
+font_size = 48
+
+[node name="RearOrthogonal" type="Marker3D" parent="NegT" unique_id=1883483393]
+unique_name_in_owner = true
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, -8)
+
+[node name="NegX" type="CSGSphere3D" parent="." unique_id=719111603]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.5, 0, 0)
+radius = 0.7907687
+material = SubResource("StandardMaterial3D_egjby")
+
+[node name="NegXArea" type="Area3D" parent="NegX" unique_id=842610554]
+transform = Transform3D(5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0)
+
+[node name="NegXCollision" type="CollisionShape3D" parent="NegX/NegXArea" unique_id=1733399986]
+shape = SubResource("SphereShape3D_44wxh")
+
+[node name="NegXLabel" type="Label3D" parent="NegX" unique_id=2130708811]
+transform = Transform3D(5.5555544, 0, 0, 0, 5.5555544, 0, 0, 0, 5.5555544, -1.8, 0, 0)
+billboard = 1
+modulate = Color(0.9411765, 0.9647059, 0.9411765, 1)
+outline_modulate = Color(0.13333334, 0.13725491, 0.13725491, 1)
+text = "-X"
+font = ExtResource("1_flmjo")
+font_size = 48
+
+[node name="LeftOrthgonal" type="Marker3D" parent="NegX" unique_id=350960866]
+unique_name_in_owner = true
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -8, 0, 0)
+
+[node name="NegY" type="CSGSphere3D" parent="." unique_id=1184379270]
+transform = Transform3D(0.14999999, 0, 0, 0, -6.556708e-09, 0.14999999, 0, -0.14999999, -6.556708e-09, 0, -0.5, 0)
+radius = 0.7907687
+material = SubResource("StandardMaterial3D_rkmqe")
+
+[node name="NegYArea" type="Area3D" parent="NegY" unique_id=46560448]
+transform = Transform3D(5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0, 5.5555553, 0, 0, 0)
+
+[node name="NegYCollision" type="CollisionShape3D" parent="NegY/NegYArea" unique_id=417976147]
+shape = SubResource("SphereShape3D_44wxh")
+
+[node name="NegYLabel" type="Label3D" parent="NegY" unique_id=213616745]
+transform = Transform3D(5.5555553, 0, 0, 0, -2.4284103e-07, -5.5555553, 0, 5.5555553, -2.4284103e-07, 0, 0, 0)
+offset = Vector2(0, -60)
+modulate = Color(0.9411765, 0.9647059, 0.9411765, 1)
+outline_modulate = Color(0.13333334, 0.13725491, 0.13725491, 1)
+text = "-Y"
+font = ExtResource("1_flmjo")
+font_size = 48
+
+[node name="BottomOrthogonal" type="Marker3D" parent="NegY" unique_id=1752024912]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -3.5527137e-15, 0, 3.5527137e-15, 1, 0, 0, -8)
+
+[connection signal="input_event" from="PosT/PosTArea" to="." method="_on_pos_t_area_input_event"]
+[connection signal="input_event" from="PosX/PosXArea" to="." method="_on_pos_x_area_input_event"]
+[connection signal="input_event" from="PosY/PosYArea" to="." method="_on_pos_y_area_input_event"]
+[connection signal="input_event" from="NegT/NegTArea" to="." method="_on_neg_t_area_input_event"]
+[connection signal="input_event" from="NegX/NegXArea" to="." method="_on_neg_x_area_input_event"]
+[connection signal="input_event" from="NegY/NegYArea" to="." method="_on_neg_y_area_input_event"]
